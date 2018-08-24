@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraControl : MonoBehaviour {
 
@@ -9,7 +7,7 @@ public class CameraControl : MonoBehaviour {
     private Vector3 m_velocity;
     private int m_currentPlayer = 0;
 
-    public float scrollSpeed = 50;
+    public float scrollSpeed = 10;
     public float topBarrier = 0.9f;
     public float botBarrier = 0.01f;
     public float rightBarrier = 0.1f;
@@ -17,8 +15,7 @@ public class CameraControl : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
-	}
+    }
 
     // Update is called once per frame
     /*private void FixedUpdate()
@@ -35,7 +32,7 @@ public class CameraControl : MonoBehaviour {
         
     }
     */
-    void Updated()
+    void Update()
     {
         //It would must move the position camera depeding where is our mouse in the screen
         if (Input.mousePosition.y >= Screen.height * topBarrier)

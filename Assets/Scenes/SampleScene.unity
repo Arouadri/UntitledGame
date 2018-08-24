@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -189,7 +189,6 @@ GameObject:
   - component: {fileID: 534669905}
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
-  - component: {fileID: 534669906}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: Untagged
@@ -257,24 +256,6 @@ Transform:
   m_Father: {fileID: 1804651302}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &534669906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 534669902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca31584746222e542829dc22d461d64b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_player: []
-  m_dampTime: 0.2
-  scrollSpeed: 100
-  topBarrier: 0.9
-  botBarrier: 0.1
-  rightBarrier: 0.1
-  leftBarrier: 0.9
 --- !u!1 &618845466
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,7 +567,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1804651300}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca31584746222e542829dc22d461d64b, type: 3}
   m_Name: 
@@ -595,11 +576,11 @@ MonoBehaviour:
   - {fileID: 699289919}
   - {fileID: 618845471}
   m_dampTime: 0.2
-  scrollSpeed: 0
-  topBarrier: 0
-  botBarrier: 0
-  rightBarrier: 0
-  leftBarrier: 0
+  scrollSpeed: 1
+  topBarrier: 0.9
+  botBarrier: 0.1
+  rightBarrier: 0.1
+  leftBarrier: 0.9
 --- !u!4 &1804651302
 Transform:
   m_ObjectHideFlags: 0
