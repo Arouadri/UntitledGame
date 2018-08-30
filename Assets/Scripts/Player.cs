@@ -5,21 +5,34 @@ public class Player : MonoBehaviour {
 
     NavMeshAgent agent;
 
-    void Start()
+    GameManager m_gameManager; //
+    
+        void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        m_gameManager = GameObject.Find("ObjectGameManager").GetComponent<GameManager>();
     }
 
     void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
+    { 
+        if(m_gameManager.m_fightMode)//if fightmode then player with high iniciative can act
         {
-            RaycastHit hit;
-
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
+            
+        }
+        else
+        {
+            if (Input.GetMouseButtonDown(0)) //TODO: if fightmode = false then all group can move
             {
-                agent.destination = hit.point;
+                RaycastHit hit;
+
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
+                {
+                    agent.destination = hit.point;
+                }
             }
         }
+        
+
+        
     }
 }

@@ -13,43 +13,61 @@ public class CameraControl : MonoBehaviour {
     public float rightBarrier = 0.1f;
     public float leftBarrier = 0.9f;
 
-    private Vector3 m_velocity;
     private int m_currentPlayer = 0;
+    private Vector3 m_velocity;
     private Camera m_Camera;
+
+    GameManager m_gameManager;
+
+    private void SwitchPlayers()
+    {
+        transform.position = Vector3.SmoothDamp(transform.position, m_player[m_currentPlayer].position, ref m_velocity, m_dampTime);
+    }
 
     // Use this for initialization
     void Start () {
         m_Camera = GetComponentInChildren<Camera>();
+        m_gameManager = GameObject.Find("ObjectGameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
-        UpdateMovementInput();
-        UpdateZoomInput();
-        UpdateRotation();
-        //SwitchPlayers();
+        if (m_gameManager.m_fightMode) //at the moment, always it's true
+        {
+            if(m_gameManager.m_freeCamera == false) //initialized true in GameManager
+            {
+                SwitchPlayers();
+                if (transform.position == m_player[m_currentPlayer].position)
+                {
+                    m_gameManager.m_freeCamera = true;
+                }
+            }
+        }
+        if (m_gameManager.m_freeCamera)
+        {
+            UpdateMovementInput();
+            UpdateZoomInput();
+            UpdateRotation();
+
+            if (Input.GetKeyDown("space")) //TODO: swap the if for actions points = 0 or player or enemy pass his turn 
+            {
+                m_currentPlayer = m_currentPlayer + 1 >= m_player.Length ? 0 : m_currentPlayer + 1;
+                m_gameManager.m_freeCamera = false;
+            }
+        }
+        
     }
     
     private void UpdateRotation()
     {
         // Rotates the camera around the camera rig pivot in Y axis
-        if (Input.GetMouseButton(2))
+        if (Input.GetMouseButton(2))//TODO: better button3
         {
             float rotAngle = m_RotationSeed * Input.GetAxis("Mouse X");
             m_Camera.transform.RotateAround(transform.position, Vector3.up , rotAngle);
         }
 
-    }
-
-    private void SwitchPlayers()
-    {
-        if (Input.GetKeyDown("space")) //TODO: swap the if for actions points = 0 or player or enemy pass his turn 
-        {
-            m_currentPlayer = m_currentPlayer + 1 >= m_player.Length ? 0 : m_currentPlayer + 1;
-        }
-
-        transform.position = Vector3.SmoothDamp(transform.position, m_player[m_currentPlayer].position, ref m_velocity, m_dampTime);
     }
 
     private void UpdateZoomInput() {

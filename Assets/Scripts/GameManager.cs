@@ -3,11 +3,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-    private LinkedList<Player> m_Players = new LinkedList<Player>();
+    private LinkedList<Player> m_Players = new LinkedList<Player>(); //TODO: change list to arraid
     private Player m_CurrentPlayer;
 
-	// Use this for initialization
-	void Start () {
+    public bool m_fightMode = true; //for the moment, true.
+    public bool m_freeCamera = true; //let free the camera when get the target
+
+    // Use this for initialization
+    void Start () {
         Player[] players = FindObjectsOfType<Player>();
         foreach (Player pl in players) {
             m_Players.AddLast(pl);
