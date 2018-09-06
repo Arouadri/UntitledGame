@@ -38,7 +38,7 @@ public class CameraControl : MonoBehaviour {
             if(m_gameManager.m_freeCamera == false) //initialized true in GameManager
             {
                 SwitchPlayers();
-                if (transform.position == m_player[m_currentPlayer].position)
+                if (m_velocity == Vector3.zero)
                 {
                     m_gameManager.m_freeCamera = true;
                 }
@@ -88,22 +88,22 @@ public class CameraControl : MonoBehaviour {
         //Move the position camera rig depeding where is our mouse in the screen or if you're pressing WASD keys
         if (Input.mousePosition.y >= Screen.height * topBarrier || Input.GetKey(KeyCode.W))
         {
-            transform.Translate(Vector3.forward * Time.deltaTime * m_ScrollSpeed, Space.World);
+            transform.Translate(Vector3.forward * Time.deltaTime * m_ScrollSpeed, Camera.main.transform);
         }
 
         if (Input.mousePosition.y <= Screen.height * botBarrier || Input.GetKey(KeyCode.S))
         {
-            transform.Translate(Vector3.back * Time.deltaTime * m_ScrollSpeed, Space.World);
+            transform.Translate(Vector3.back * Time.deltaTime * m_ScrollSpeed, Camera.main.transform);
         }
 
         if (Input.mousePosition.x >= Screen.width * leftBarrier || Input.GetKey(KeyCode.D))
         {
-            transform.Translate(Vector3.right * Time.deltaTime * m_ScrollSpeed, Space.World);
+            transform.Translate(Vector3.right * Time.deltaTime * m_ScrollSpeed, Camera.main.transform);
         }
 
         if (Input.mousePosition.x <= Screen.width * rightBarrier || Input.GetKey(KeyCode.A))
         {
-            transform.Translate(Vector3.left * Time.deltaTime * m_ScrollSpeed, Space.World);
+            transform.Translate(Vector3.left * Time.deltaTime * m_ScrollSpeed, Camera.main.transform);
         }
     }
 }

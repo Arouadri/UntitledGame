@@ -1,7 +1,7 @@
 ﻿using UnityEngine.AI;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class Player : PlayerController {
 
     NavMeshAgent agent;
 
@@ -11,6 +11,7 @@ public class Player : MonoBehaviour {
     {
         agent = GetComponent<NavMeshAgent>();
         m_gameManager = GameObject.Find("ObjectGameManager").GetComponent<GameManager>();
+        m_level = 1;
     }
 
     void Update()
